@@ -20,7 +20,6 @@
         centered = d3.select(null),
         lastFocusNode = d3.select(null);
 
-
     // 把密度投射到色彩空間
     var color = d3.scaleLinear();
 
@@ -78,10 +77,11 @@
     function loaded(error, villages, hospitals, TaipeiTopo){
         if(error) { console.log(error); }
 
-        var arrayDensity = Object.keys(villages).map(function(k) { return villages[k] });
+        var arrayDensity = Object.keys(villages).map(function(k) { return Number(villages[k]) });
+        var max = d3.max(d3.values(arrayDensity));
 
         // 把密度投射到色彩空間
-        color.domain([0,20000])
+        color.domain([0, max*0.2])
             .range(["#eafff5","#31626d"])
             .clamp(true);
 
