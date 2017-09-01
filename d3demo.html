@@ -77,6 +77,7 @@
     function loaded(error, villages, hospitals, TaipeiTopo){
         if(error) { console.log(error); }
 
+        // 先把密度json轉成陣列。然後取出最大值
         var arrayDensity = Object.keys(villages).map(function(k) { return Number(villages[k]) });
         var max = d3.max(d3.values(arrayDensity));
 
